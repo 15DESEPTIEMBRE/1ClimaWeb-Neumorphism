@@ -2,12 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Clima Web – Neumorphism</title>
-
-  <!-- Estilos -->
+  <title>Clima Web</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -17,7 +13,7 @@
 </header>
 
 <section class="search-box">
-  <input type="text" id="cityInput" placeholder="Ciudad o lat,lon (ej: 19.43,-99.13)">
+  <input type="text" id="cityInput" placeholder="City o lat,lon (ej: 19.43,-99.13)">
   <button id="btnSearch">Buscar</button>
 </section>
 
@@ -34,7 +30,7 @@
 
 <section id="status" class="status hidden">
   <div class="spinner"></div>
-  <p>Cargando datos...</p>
+  <p>Cargando datos... Por favor espera.</p>
 </section>
 
 <section class="chart-container hidden" id="chartBox">
@@ -42,11 +38,19 @@
   <div id="legend" class="dynamic-legend"></div>
 </section>
 
+<div class="color-key">
+  <span class="red"></span> TEMP > 30°C
+  <span class="blue"></span> TEMP < 10°C
+</div>
+
+<!-- Inicializa la fecha primero -->
 <script>
   document.getElementById("dateInput").value =
     new Date().toISOString().split("T")[0];
 </script>
 
+<!-- Luego carga la lógica -->
 <script src="app.js"></script>
+
 </body>
 </html>

@@ -5,7 +5,19 @@ const statusBox = document.getElementById("status");
 const chartBox = document.getElementById("chartBox");
 
 btn.addEventListener("click", async () => {
-  const input = document.getElementById("cityInput").value;
+  const input = document.getElementById("cityInput").value.trim();
+
+const parts = input.split(",");
+
+if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1])) {
+  alert("Formato inválido. Usa: 19.43,-99.13");
+  return;
+}
+
+const lat = parts[0].trim();
+const lon = parts[1].trim();
+
+  
   const days = document.getElementById("daysSelect").value;
 
   if (!input.includes(",")) {
@@ -63,3 +75,4 @@ btn.addEventListener("click", async () => {
     statusBox.innerHTML = "<p>Error al cargar datos</p>";
   }
 });
+

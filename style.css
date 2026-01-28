@@ -1,8 +1,15 @@
+/* ===============================
+   NEUMORPHISM – ESTILO GENERAL
+================================ */
 :root {
   --bg: #e0e5ec;
   --light: #ffffff;
   --dark: #a3b1c6;
   --text: #333;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -13,19 +20,29 @@ body {
   text-align: center;
 }
 
-.header,
-.status,
-.chart-container {
-  background: var(--bg);
+/* ===============================
+   HEADER
+================================ */
+.header {
+  width: 70%;
+  margin: 30px auto;
+  padding: 20px;
   border-radius: 20px;
+  background: var(--bg);
   box-shadow:
     8px 8px 16px var(--dark),
     -8px -8px 16px var(--light);
-  margin: 25px auto;
-  padding: 20px;
-  width: 70%;
 }
 
+/* ===============================
+   SEARCH & CONTROLS
+================================ */
+.search-box,
+.controls {
+  margin: 20px auto;
+}
+
+/* Inputs hundidos */
 input,
 select {
   padding: 12px;
@@ -33,20 +50,27 @@ select {
   border-radius: 14px;
   border: none;
   background: var(--bg);
+  color: var(--text);
+  outline: none;
   box-shadow:
     inset 6px 6px 10px var(--dark),
     inset -6px -6px 10px var(--light);
 }
 
+/* ===============================
+   BOTÓN
+================================ */
 button {
   padding: 12px 26px;
   border-radius: 16px;
   border: none;
   background: var(--bg);
   cursor: pointer;
+  font-weight: bold;
   box-shadow:
     6px 6px 12px var(--dark),
     -6px -6px 12px var(--light);
+  transition: all 0.2s ease;
 }
 
 button:hover {
@@ -55,29 +79,79 @@ button:hover {
     inset -6px -6px 10px var(--light);
 }
 
+/* ===============================
+   STATUS (CARGANDO / ERROR)
+================================ */
+.status {
+  width: 60%;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 22px;
+  background: var(--bg);
+  box-shadow:
+    8px 8px 16px var(--dark),
+    -8px -8px 16px var(--light);
+}
+
+/* ===============================
+   CONTENEDOR GRÁFICA
+================================ */
+.chart-container {
+  width: 75%;
+  margin: 30px auto;
+  padding: 22px;
+  border-radius: 26px;
+  background: var(--bg);
+  box-shadow:
+    10px 10px 20px var(--dark),
+    -10px -10px 20px var(--light);
+}
+
+/* Canvas hundido */
 canvas {
   background: var(--bg);
-  border-radius: 16px;
-  padding: 14px;
+  border-radius: 18px;
+  padding: 16px;
   box-shadow:
     inset 6px 6px 10px var(--dark),
     inset -6px -6px 10px var(--light);
 }
 
+/* ===============================
+   SPINNER
+================================ */
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin: auto;
   border-radius: 50%;
   border: 6px solid var(--bg);
   border-top: 6px solid #999;
+  box-shadow:
+    inset 4px 4px 8px var(--dark),
+    inset -4px -4px 8px var(--light);
   animation: spin 1s linear infinite;
 }
 
+/* ===============================
+   LEYENDA
+================================ */
+.dynamic-legend {
+  margin-top: 18px;
+  font-weight: bold;
+}
+
+/* ===============================
+   UTILIDADES
+================================ */
 .hidden {
   display: none;
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
+

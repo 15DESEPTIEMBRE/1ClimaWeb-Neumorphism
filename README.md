@@ -1,20 +1,21 @@
-# ClimaWeb – Diseño Neumorfismo
+# 🌦️ Clima Web - Neumorphism
 
-Aplicación web que permite consultar el pronóstico del clima de un lugar
-utilizando datos meteorológicos en tiempo real.
+Aplicación web que consume datos meteorológicos en tiempo real usando la API de Open-Meteo y los visualiza mediante Chart.js con un diseño neumórfico.
 
-## Características
-- Consumo de API Open-Meteo
-- Peticiones asíncronas con async/await
-- Manejo de estados: cargando, éxito y error
-- Gráfica interactiva con Chart.js
-- Pronóstico de 5 o 10 días
-- Indicadores visuales por temperatura
-- Diseño basado en neumorfismo
-
-## Tecnologías utilizadas
+## 🚀 Tecnologías
 - HTML5
 - CSS3 (Neumorphism)
-- JavaScript
+- JavaScript (async/await)
 - Chart.js
-- API Open-Meteo
+- Open-Meteo API
+
+## 🎯 Funcionalidades
+- Consulta por coordenadas
+- Pronóstico de 5 o 10 días
+- Gráfica interactiva
+- Indicadores de temperatura
+- Estados: Cargando / Error / Éxito
+
+## 🌐 Demo
+https://15deseptiembre.github.io/1ClimaWeb-Neumorphism/
+

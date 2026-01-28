@@ -1,0 +1,83 @@
+:root {
+  --bg: #e0e5ec;
+  --light: #ffffff;
+  --dark: #a3b1c6;
+  --text: #333;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+}
+
+.header,
+.status,
+.chart-container {
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow:
+    8px 8px 16px var(--dark),
+    -8px -8px 16px var(--light);
+  margin: 25px auto;
+  padding: 20px;
+  width: 70%;
+}
+
+input,
+select {
+  padding: 12px;
+  margin: 6px;
+  border-radius: 14px;
+  border: none;
+  background: var(--bg);
+  box-shadow:
+    inset 6px 6px 10px var(--dark),
+    inset -6px -6px 10px var(--light);
+}
+
+button {
+  padding: 12px 26px;
+  border-radius: 16px;
+  border: none;
+  background: var(--bg);
+  cursor: pointer;
+  box-shadow:
+    6px 6px 12px var(--dark),
+    -6px -6px 12px var(--light);
+}
+
+button:hover {
+  box-shadow:
+    inset 6px 6px 10px var(--dark),
+    inset -6px -6px 10px var(--light);
+}
+
+canvas {
+  background: var(--bg);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow:
+    inset 6px 6px 10px var(--dark),
+    inset -6px -6px 10px var(--light);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  border-radius: 50%;
+  border: 6px solid var(--bg);
+  border-top: 6px solid #999;
+  animation: spin 1s linear infinite;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}

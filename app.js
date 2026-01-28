@@ -5,18 +5,13 @@ const statusBox = document.getElementById("status");
 const chartBox = document.getElementById("chartBox");
 
 btn.addEventListener("click", async () => {
-  const input = document.getElementById("cityInput").value.trim();
+  const city = document.getElementById("cityInput").value.trim();
   const days = document.getElementById("daysSelect").value;
 
-  const parts = input.split(",");
-
-  if (parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1])) {
-    alert("Formato inválido. Usa: 19.43,-99.13");
+  if (!city) {
+    alert("Escribe una ciudad o país");
     return;
   }
-
-  const lat = parts[0].trim();
-  const lon = parts[1].trim();
 
   statusBox.classList.remove("hidden");
   chartBox.classList.add("hidden");
@@ -24,16 +19,31 @@ btn.addEventListener("click", async () => {
   if (chart) chart.destroy();
 
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&forecast_days=${days}&timezone=auto`;
-    const res = await fetch(url);
-    const data = await res.json();
+    // 1️⃣ Geocoding (ciudad → lat/lon)
+    const geoRes = await fetch(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=es&format=json`
+    );
+    const geoData = await geoRes.json();
 
-    const labels = data.daily.time;
-    const temps = data.daily.temperature_2m_max;
+    if (!geoData.results || geoData.results.length === 0) {
+      alert("Ciudad no encontrada");
+      statusBox.classList.add("hidden");
+      return;
+    }
+
+    const { latitude, longitude, name, country } = geoData.results[0];
+
+    // 2️⃣ Clima
+    const weatherRes = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max&forecast_days=${days}&timezone=auto`
+    );
+    const weatherData = await weatherRes.json();
+
+    const labels = weatherData.daily.time;
+    const temps = weatherData.daily.temperature_2m_max;
 
     const maxTemp = Math.max(...temps);
     let color = "#333";
-
     if (maxTemp > 30) color = "red";
     if (maxTemp < 10) color = "blue";
 
@@ -44,7 +54,7 @@ btn.addEventListener("click", async () => {
       data: {
         labels,
         datasets: [{
-          label: "Temperatura °C",
+          label: `Temperatura en ${name}, ${country} (°C)`,
           data: temps,
           borderColor: color,
           backgroundColor: color,
@@ -53,9 +63,7 @@ btn.addEventListener("click", async () => {
       },
       options: {
         responsive: true,
-        animation: {
-          duration: 1000
-        }
+        animation: { duration: 1000 }
       }
     });
 
@@ -66,3 +74,4 @@ btn.addEventListener("click", async () => {
     statusBox.innerHTML = "<p>Error al cargar datos</p>";
   }
 });
+
